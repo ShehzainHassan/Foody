@@ -1,4 +1,4 @@
-package com.foody
+package com.shehzain_hassan.Foody
 
 import android.os.Build
 import android.os.Bundle
