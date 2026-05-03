@@ -8,6 +8,9 @@ export default function Categories({
   activeCategory,
   handleChangeCategory,
 }) {
+  if (!categories || categories.length === 0) {
+    return null;
+  }
   return (
     <Animated.View
       entering={FadeInDown.duration(500).springify()}

@@ -1,42 +1,19 @@
-import { FlatList, Image, Pressable, Text, View } from "react-native";
+import { Image, Pressable, Text } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import Loading from "./Loading";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Recipes({ meals }) {
-  return (
-    <View className="mx-4 mt-4 flex-1">
-      <Text
-        style={{ fontSize: hp(3) }}
-        className="font-semibold text-neutral-600 mb-3">
-        Recipes
-      </Text>
+export default function RecipeCard({ recipe, index }) {
+  const navigation = useNavigation();
 
-      {meals.length > 0 ? (
-        <FlatList
-          data={meals}
-          keyExtractor={(item) => item.idMeal}
-          numColumns={2}
-          showsVerticalScrollIndicator={false}
-          columnWrapperStyle={{ justifyContent: "space-between" }}
-          renderItem={({ item, index }) => (
-            <RecipeCard recipe={item} index={index} />
-          )}
-        />
-      ) : (
-        <Loading size="large" className="mt-20" />
-      )}
-    </View>
-  );
-}
-
-const RecipeCard = ({ recipe, index }) => {
   return (
     <Animated.View
       entering={FadeInDown.delay(index * 100).duration(600)}
       className="mb-4"
       style={{ width: "48%" }}>
-      <Pressable>
+      <Pressable
+        onPress={() => navigation.navigate("RecipeDetail", { ...recipe })}>
+        {/* Image */}
         <Image
           source={{ uri: recipe.strMealThumb }}
           style={{
@@ -46,6 +23,7 @@ const RecipeCard = ({ recipe, index }) => {
           }}
         />
 
+        {/* Title */}
         <Text
           style={{ fontSize: hp(1.7) }}
           className="font-semibold mt-2 text-neutral-600">
@@ -56,4 +34,4 @@ const RecipeCard = ({ recipe, index }) => {
       </Pressable>
     </Animated.View>
   );
-};
+}
