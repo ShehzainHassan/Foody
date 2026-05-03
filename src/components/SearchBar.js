@@ -4,7 +4,7 @@ import { heightPercentageToDP } from "react-native-responsive-screen";
 
 export default function SearchBar() {
   return (
-    <View className="mt-4 mx-4 flex-row items-center rounded-full bg-black/5 p-[6px]">
+    <View className="mt-4 flex-row items-center rounded-full bg-black/5 p-[6px]">
       <TextInput
         placeholder="Search any recipe"
         placeholderTextColor="gray"

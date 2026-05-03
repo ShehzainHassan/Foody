@@ -6,6 +6,7 @@ import Categories from "../components/Categories";
 import Header from "../components/Header";
 import RecipeCard from "../components/Recipes";
 import SearchBar from "../components/SearchBar";
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function HomeScreen() {
   const [activeCategory, setActiveCategory] = useState("Beef");
   const [categories, setCategories] = useState([]);
@@ -48,7 +49,7 @@ export default function HomeScreen() {
   };
 
   return (
-    <View className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white px-4">
       <StatusBar style="dark" />
       <FlatList
         data={meals}
@@ -71,6 +72,6 @@ export default function HomeScreen() {
           <RecipeCard recipe={item} index={index} />
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 }
