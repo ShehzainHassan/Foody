@@ -7,24 +7,25 @@ export default function Categories({
   categories,
   activeCategory,
   handleChangeCategory,
+  isSearching,
 }) {
   if (!categories || categories.length === 0) return null;
 
   return (
-    <Animated.View
-      entering={FadeInDown.duration(500).springify()}
-      className="my-4">
+    <Animated.View entering={FadeInDown.duration(500)} className="my-4">
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {categories.map((item, index) => {
-          const isActive = item.strCategory === activeCategory;
-          const activeButtonClass = isActive ? "bg-amber-400" : "bg-black/10";
+        {categories.map((item) => {
+          const isActive = !isSearching && item.strCategory === activeCategory;
 
           return (
             <TouchableOpacity
               key={item.idCategory}
               onPress={() => handleChangeCategory(item.strCategory)}
               className="flex items-center mr-4">
-              <View className={`rounded-full p-[6px] ${activeButtonClass}`}>
+              <View
+                className={`rounded-full p-[6px] ${
+                  isActive ? "bg-amber-400" : "bg-black/10"
+                }`}>
                 <Image
                   source={item.strCategoryThumb}
                   style={{

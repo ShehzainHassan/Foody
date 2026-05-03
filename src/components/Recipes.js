@@ -3,8 +3,8 @@ import { Image } from "expo-image";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { useNavigation } from "@react-navigation/native";
-
-export default function RecipeCard({ recipe, index }) {
+import React from "react";
+export default React.memo(function RecipeCard({ recipe, index }) {
   const navigation = useNavigation();
 
   return (
@@ -37,4 +37,4 @@ export default function RecipeCard({ recipe, index }) {
       </Pressable>
     </Animated.View>
   );
-}
+});
